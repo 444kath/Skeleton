@@ -7,8 +7,9 @@ gender="male"
 emotion="happy"
 sampleString="30 year old male. He looks happy."
 
-#python face_parse.py > $sampleString
-python face_parse.py 
+person=`python face_parse.py`
+echo "$person"
+#python face_parse.py 
 
 
 
@@ -17,7 +18,7 @@ python face_parse.py
 
 curl -H "Authorization: Bearer $(gcloud auth application-default print-access-token)"   -H "Content-Type: application/json; charset=utf-8"   --data "{
     'input':{
-      'text':'Activity alert: There is a $sampleString '
+      'text':'Activity alert: There is a $person '
     },
     'voice':{
       'languageCode':'en-gb',
@@ -41,3 +42,8 @@ cat synthesize-text.txt | jq -r '.audioContent' > synthesize-output-base64.txt
 base64 synthesize-output-base64.txt --decode > synthesized-audio.mp3
 
 rhythmbox-client synthesized-audio.mp3 --play
+
+y=$(ps -ef | grep face-detection | awk '{print $2}')
+kill $y
+z=$(ps -ef | grep face-detection | awk '{print $2}')
+kill $z
