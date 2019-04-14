@@ -5,3 +5,70 @@ source /opt/intel/computer_vision_sdk/bin/setupvars.sh
 
 
 
+HUMAN POSE:
+
+./human_pose_estimation_demo -i cam -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/human-pose-estimation-0001/FP32/human-pose-estimation-0001.xml -d CPU -r 
+
+AGE GENDER
+./interactive_face_detection_demo -i cam -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-adas-0001/FP32/face-detection-adas-0001.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -r
+
+
+./interactive_face_detection_demo -i cam -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-adas-0001/FP32/face-detection-adas-0001.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_em /opt/intel/computer_vision_sdk/deployment_tools/intel_models/emotions-recognition-retail-0003/FP32/emotions-recognition-retail-0003.xml 
+
+
+
+ERROR: (gcloud.auth.application-default.print-access-token) The Application Default Credentials are not available. They are available if running in Google Compute Engine. Otherwise, the environment variable GOOGLE_APPLICATION_CREDENTIALS must be defined pointing to a file defining the credentials. See https://developers.google.com/accounts/docs/application-default-credentials for more information.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   526    0   130  100   396    136    414 --:--:-- --:--:-- --:--:--   414
+
+
+
+
+base64 synthesize-output-base64.txt --decode > synthesized-audio.mp3
+
+
+rhythmbox-client synthesize-audio.mp3 --play
+
+
+curl -H "Authorization: Bearer $(gcloud auth application-default print-access-token)"   -H "Content-Type: application/json; charset=utf-8"   --data "{
+    'input':{
+      'text':'We are Skeleton Team. We are here at the AT&T hackathon. White male age 30 is sitting on a chair hold a mouse.'
+    },
+    'voice':{
+      'languageCode':'en-gb',
+      'name':'en-GB-Standard-A',
+      'ssmlGender':'FEMALE'
+    },
+    'audioConfig':{
+      'audioEncoding':'MP3'
+    }
+  }" "https://texttospeech.googleapis.com/v1/text:synthesize" > synthesize-text.txt
+
+base64 synthesize-output-base64.txt --decode > synthesized-audio.mp3
+
+
+rhythmbox-client synthesize-audio.mp3 --play
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
