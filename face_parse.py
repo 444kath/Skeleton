@@ -8,26 +8,28 @@ if __name__ == "__main__":
 
     age, gender, emotion = "", "", ""
 
-    while len(emotion) == 0 and len(age) == 0 and len(gender) == 0:
-        # Read and parse from intel's thing
-        rlist, wlist, xlist = select.select([p1.stdout], [], [])
-        for stdout in rlist:
-            parser = os.read(stdout.fileno(), 1024)
-            if len(parser) > 0:
-                if 'age' in parser:
-                    split_parser = parser.split('= ')
-  		    if len(split_parser) > 1:
-                        new_parser = split_parser[1]
-                        new_parser = new_parser.split(',')
-                        gender = new_parser[0]
-                        age = new_parser[1].split('\n')[0]
-			if len(split_parser) > 2:
-			    emotion = split_parser[2].split('\n')[0]
-                elif 'emotion' in parser:
-                    if len(split_parser) > 1:
-                        emotion = parser.split('= ')[1]
+    for i in range(20):
+        age, gender, emotion = "", "", ""
+    	while len(emotion) == 0 and len(age) == 0 and len(gender) == 0:
+            # Read and parse from intel's thing
+            rlist, wlist, xlist = select.select([p1.stdout], [], [])
+            for stdout in rlist:
+               parser = os.read(stdout.fileno(), 1024)
+               if len(parser) > 0:
+                   if 'age' in parser:
+                       split_parser = parser.split('= ')
+  		       if len(split_parser) > 1:
+                           new_parser = split_parser[1]
+                           new_parser = new_parser.split(',')
+                           gender = new_parser[0]
+                           age = new_parser[1].split('\n')[0]
+	                   if len(split_parser) > 2:
+			       emotion = split_parser[2].split('\n')[0]
+                   elif 'emotion' in parser:
+                       if len(split_parser) > 1:
+                           emotion = parser.split('= ')[1]
 
-            	# print to output once all fields filled
+    # print to output once all fields filled
     if 'M' in gender:
         print(age + ' year old male.  He looks ' + emotion)
     else:
