@@ -2,7 +2,10 @@ import os, sys, select, subprocess
 
 
 if __name__ == "__main__":
-    args = ['sh', '-c', '/home/intel/inference_engine_samples/intel64/Release/interactive_face_detection_demo -i cam -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-adas-0001/FP32/face-detection-adas-0001.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_em /opt/intel/computer_vision_sdk/deployment_tools/intel_models/emotions-recognition-retail-0003/FP32/emotions-recognition-retail-0003.xml -r']
+    # Code from hackathon
+    # args = ['sh', '-c', '/home/intel/inference_engine_samples/intel64/Release/interactive_face_detection_demo -i cam -m /opt/intel/computer_vision_sdk/deployment_tools/intel_models/face-detection-adas-0001/FP32/face-detection-adas-0001.xml -m_ag /opt/intel/computer_vision_sdk/deployment_tools/intel_models/age-gender-recognition-retail-0013/FP32/age-gender-recognition-retail-0013.xml -m_em /opt/intel/computer_vision_sdk/deployment_tools/intel_models/emotions-recognition-retail-0003/FP32/emotions-recognition-retail-0003.xml -r']
+    # Code for Sarah's laptop
+    args = ['sh', '-c', ‘/Users/sarahsathavipat/inference_engine_samples_build/intel64/Release/interactive_face_detection_demo -i cam -m /Users/sarahsathavipat/openvino_models/ir/FP32/Transportation/object_detection/face/pruned_mobilenet_reduced_ssd_shared_weights/dldt/face-detection-adas-0001.xml -m_ag /Users/sarahsathavipat/openvino_models/ir/FP32/Retail/object_attributes/age_gender/dldt/age-gender-recognition-retail-0013.xml -m_em /Users/sarahsathavipat/openvino_models/ir/FP32/Retail/object_attributes/emotions_recognition/0003/dldt/emotions-recognition-retail-0003.xml -r']
 
     p1 = subprocess.Popen(args, stdout=subprocess.PIPE)
 
